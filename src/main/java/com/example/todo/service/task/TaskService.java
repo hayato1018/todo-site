@@ -1,26 +1,18 @@
 package com.example.todo.service.task;
 
+import com.example.todo.repository.task.TaskRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class TaskService {
 
-    public List<TaskEntity> find() {
-        var task1 = new TaskEntity(
-                1L,
-                "Spring Bootを学ぶ",
-                "TODO アプリケーションを作ってみる",
-                TaskStatus.TODO
-        );
-        var task2 = new TaskEntity(
-                2L,
-                "Spring Securityを学ぶ",
-                "ログイン機能を作ってみる",
-                TaskStatus.DOING
-        );
+    private final TaskRepository taskRepository;
 
-        return List.of(task1, task2);
+    public List<TaskEntity> find() {
+        return taskRepository.select();
     }
 }
