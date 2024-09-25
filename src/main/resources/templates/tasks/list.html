@@ -19,8 +19,8 @@
     </thead>
     <tbody>
     <tr th:each="task: ${taskList}" th:object="${task}">
-      <td th:text="*{id}"></td>
-      <td th:text="*{summary}"></td>
+      <td><a th:href="@{/tasks/{id}(id=*{id})}" th:text="'#' + *{id}"></a></td>
+      <td><a th:href="@{/tasks/{id}(id=*{id})}" th:text="*{summary}"></a></td>
       <td th:text="*{status}"></td>
     </tr>
     </tbody>
