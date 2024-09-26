@@ -9,15 +9,18 @@
 </head>
 <body>
 <section layout:fragment="content">
-<div>
-  <table class="table table-striped table-hover">
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>概要</th>
-      <th>ステータス</th>
-    </tr>
-    </thead>
+  <div>
+    <a th:href="@{/tasks/creationForm}" class="btn btn-primary">作成</a>
+  </div>
+  <div>
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>概要</th>
+        <th>ステータス</th>
+        </tr>
+      </thead>
     <tbody>
     <tr th:each="task: ${taskList}" th:object="${task}">
       <td><a th:href="@{/tasks/{id}(id=*{id})}" th:text="'#' + *{id}"></a></td>
@@ -26,7 +29,7 @@
     </tr>
     </tbody>
   </table>
-</div>
+  </div>
 </section>
 </body>
 </html>
