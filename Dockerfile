@@ -8,7 +8,7 @@ RUN ./gradlew build
 
 # 実行ステージ
 FROM amazoncorretto:17-alpine
-WORKDIR /build/libs/todo-0.0.1-SNAPSHOT.jar
-COPY --from=build /home/app/build/libs/*.jar todo-0.0.1-SNAPSHOT.jar
+WORKDIR /app
+COPY --from=build /home/app/build/libs/*.jar /app/todo-0.0.1-SNAPSHOT.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","-Dfile.encoding=UTF-8","/build/libs/todo-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","-Dfile.encoding=UTF-8","/app/todo-0.0.1-SNAPSHOT.jar"]
