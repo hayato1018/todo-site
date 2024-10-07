@@ -15,13 +15,18 @@ public class TaskController {
 
     private final TaskService taskService;
 
+    @GetMapping("/list.html")
+    public String showList() {
+        return "tasks";
+    }
+
     @GetMapping
     public String list(TaskSearchForm searchForm, Model model) {
 
         var taskList = taskService.find(searchForm.toEntity())
                 .stream()
-                        .map(TaskDTO::toDTO)
-                        .toList();
+                .map(TaskDTO::toDTO)
+                .toList();
         model.addAttribute("taskList", taskList);
         model.addAttribute("searchDTO", searchForm.toDTO());
         return "tasks/list";
@@ -67,8 +72,7 @@ public class TaskController {
             @PathVariable("id") long id,
             @Validated @ModelAttribute TaskForm form,
             BindingResult bindingResult,
-            Model model
-    ) {
+            Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("mode", "EDIT");
             return "tasks/form";
